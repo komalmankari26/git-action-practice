@@ -10,5 +10,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Push branch check
-        run: echo "Push check running for branch: ${{ github.ref_name }}"
+      - name: Push branch check'
+        run: 'echo "Push check running for branch: ${{ github.ref_name }}"'
