@@ -1,0 +1,12 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  manual-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Manual test
+        run: echo "This workflow was started manually!"
