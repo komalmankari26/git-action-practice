@@ -1,0 +1,14 @@
+name: Push Check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Push branch check'
+        run: 'echo "Push check running for branch: ${{ github.ref_name }}"'
