@@ -31,4 +31,20 @@ jobs:
           echo "OS: macOS"
           echo "Hostname: $(hostname)"
           echo "User: $(whoami)"
-          
+
+  tools:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show installed tools
+        run: |
+          echo "Docker version:"
+          docker --version
+
+          echo "Python version:"
+          python --version
+
+          echo "Node version:"
+          node --version
+
+          echo "Git version:"
+          git --version
