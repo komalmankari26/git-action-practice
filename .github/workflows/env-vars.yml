@@ -1,0 +1,23 @@
+name: Environment Variables Workflow
+on:
+  push:
+    branches:
+      - day-43
+env:
+    APP_NAME: "MyApp"
+jobs:
+    show-env:
+        runs-on: ubuntu-latest
+
+        env:
+            ENVIRONMENT: "staging"
+        steps:
+          - name: Show Environment Variables
+            env:
+                VERSION: "1.0.0"
+            run: |
+              echo "Application Name: $APP_NAME"
+              echo "Environment: $ENVIRONMENT"
+              echo "Version: $VERSION"
+              echo "Commit SHA: ${{ github.sha }}"
+              echo "Triggered by: ${{ github.actor }}"
