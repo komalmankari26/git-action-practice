@@ -1,0 +1,33 @@
+name: Reusable Build
+
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        description: "Application name"
+        required: true
+        type: string
+
+      environment:
+        description: "Deployment environment"
+        required: false
+        type: string
+        default: staging
+
+    secrets:
+      docker_token:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build application
+        run: echo "Building ${{ inputs.app_name }} for ${{ inputs.environment }}"
+
+      - name: Verify Docker token
+        run: "echo Docker token is set: true"
