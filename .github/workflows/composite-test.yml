@@ -1,0 +1,25 @@
+name: Test Composite Action
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Setup and Greet
+        id: greet
+        uses: ./.github/actions/setup-and-greet
+        with:
+          name: "Komal"
+          language: "en"
+
+      - name: Verify greeting output
+        run: |
+          echo "Greeting completed: ${{ steps.greet.outputs.greeted }}"
