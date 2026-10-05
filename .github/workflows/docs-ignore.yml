@@ -1,0 +1,21 @@
+name: Docs Ignore Trigger
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+
+jobs:
+  code-change:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show Trigger Details
+        run: |
+          echo "Workflow triggered by a non-documentation change."
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
