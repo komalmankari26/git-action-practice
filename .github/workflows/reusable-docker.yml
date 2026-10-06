@@ -1,3 +1,4 @@
+
 name: Reusable Docker Build and Push
 
 on:
@@ -42,12 +43,18 @@ jobs:
           username: ${{ secrets.docker_username }}
           password: ${{ secrets.docker_token }}
 
+      - name: Generate short SHA
+        id: short-sha
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ${{ inputs.image_name }}:${{ inputs.tag }}
+          tags: |
+            ${{ inputs.image_name }}:${{ inputs.tag }}
+            ${{ inputs.image_name }}:sha-${{ steps.short-sha.outputs.sha_short }}
 
       - name: Set image URL
         id: image-info
